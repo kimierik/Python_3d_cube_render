@@ -35,10 +35,10 @@ class triangle:
         #
         #
 
-    def render(self,color):
-        pygame.draw.line(config.win,color,self.p1.get_2d(),self.p2.get_2d())
-        pygame.draw.line(config.win, color,self.p3.get_2d(),self.p2.get_2d())
-        pygame.draw.line(config.win, color,self.p1.get_2d(),self.p3.get_2d())
+    def render(self):
+        pygame.draw.line(config.win,self.color,self.p1.get_2d(),self.p2.get_2d())
+        pygame.draw.line(config.win, self.color,self.p3.get_2d(),self.p2.get_2d())
+        pygame.draw.line(config.win, self.color,self.p1.get_2d(),self.p3.get_2d())
 
 
 
@@ -86,17 +86,16 @@ class plane:
         #
         #
 
-    def render_plane(self,color):
-        pygame.draw.line(config.win,color, self.cornerlist[0].get_2d(), self.cornerlist[1].get_2d())
-        pygame.draw.line(config.win,color, self.cornerlist[1].get_2d(), self.cornerlist[2].get_2d())
-        pygame.draw.line(config.win,color, self.cornerlist[3].get_2d(), self.cornerlist[0].get_2d())
-        pygame.draw.line(config.win,color, self.cornerlist[2].get_2d(), self.cornerlist[3].get_2d())
+    def render_plane(self):
+        pygame.draw.line(config.win,self.color, self.cornerlist[0].get_2d(), self.cornerlist[1].get_2d())
+        pygame.draw.line(config.win,self.color, self.cornerlist[1].get_2d(), self.cornerlist[2].get_2d())
+        pygame.draw.line(config.win,self.color, self.cornerlist[3].get_2d(), self.cornerlist[0].get_2d())
+        pygame.draw.line(config.win,self.color, self.cornerlist[2].get_2d(), self.cornerlist[3].get_2d())
 
 
-    def render_triangle(self,color):
-        self.triangle1.render(color)
-        self.triangle2.render(color)
-        pass
+    def render_triangle(self):
+        self.triangle1.render()
+        self.triangle2.render()
 
     def fill(self):
         self.triangle1.fill()
@@ -167,14 +166,14 @@ class cube:
             x,y,z=tools.matrixmulti(rotateymatrix,i.get_info())
             i.set_info([x,y,z])
 
-    def render(self,color):
+    def render(self):
         for i in self.plane_list:
-            i.render_plane(color)
+            i.render_plane()
         pass
 
-    def render_wireframe(self,color):
+    def render_wireframe(self):
         for i in self.plane_list:
-            i.render_triangle(color)
+            i.render_triangle()
 
 
     def render_fill(self):
