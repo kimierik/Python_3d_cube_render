@@ -34,27 +34,59 @@ def main():
 
 
         config.win.fill(config.black)
-        testcube.rotatex(angle*2)
-        testcube.rotatey(angle*random.randint(0,1))
-        testcube.rotatez(angle/math.pi)
+        #testcube.rotatex(angle*2)
+        #testcube.rotatey(angle*random.randint(0,1))
+        #testcube.rotatez(angle/math.pi)
 
         #tryout.rotatez(-angle/math.pi)
         #tryout.rotatex(-angle)
     #    tryout.rotatey(-angle)
-        testcube.render(config.white)
-        testcube.render_wireframe(config.white)
+        testcube.render()
+        testcube.render_wireframe()
         #testcube.render_fill()
         #tryout.render(blue)
         angle+=(0.001/100000)
 
-        pygame.display.update()
+
+
+        #make user input
+
+
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 run=False
 
 
+        pressed=pygame.key.get_pressed()
 
 
+
+
+
+
+#this "if" monstrosity checks when buttons are pressed
+        
+        if pressed[pygame.K_a]:
+            testcube.rotatey(-angle)
+        if pressed[pygame.K_d]:
+            testcube.rotatey(angle)
+
+        if pressed[pygame.K_w]:
+            testcube.rotatex(-angle)
+        if pressed[pygame.K_s]:
+            testcube.rotatex(angle)
+
+        if pressed[pygame.K_q]:
+            testcube.rotatez(-angle)
+        if pressed[pygame.K_e]:
+            testcube.rotatez(angle)
+            
+        
+        if pressed[pygame.K_f]:
+            testcube.render_fill()
+
+
+        pygame.display.update()
 
     pygame.quit()
 
